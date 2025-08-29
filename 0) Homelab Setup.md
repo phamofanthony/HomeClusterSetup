@@ -1,0 +1,4 @@
+# Overview
+I have 3 mini HP elite PC's and am building a home lab cluster based around them to learn the fundamentals of Kubernetes. 
+
+They are all three connected to a 5-port gigabit switch which is connected to one of my apartment's ethernet ports. With this setup, I hope to eventually connect a NAS to the cluster as well.
