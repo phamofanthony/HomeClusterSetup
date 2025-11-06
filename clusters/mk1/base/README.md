@@ -1,0 +1,1 @@
+This directory contains YAML/helm charts for ArgoCD to manage.
