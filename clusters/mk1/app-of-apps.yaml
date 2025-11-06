@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/<you>/homelab-platform.git
+    repoURL: https://github.com/phamofanthony/HomeClusterSetup.git
     targetRevision: main
-    path: clusters/main/base
+    path: clusters/mk1/base
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
