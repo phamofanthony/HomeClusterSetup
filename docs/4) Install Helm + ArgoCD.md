@@ -25,3 +25,13 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 kubectl port-forward -n argocd svc/argocd-server 8080:443
 ```
 Login with the username admin and the password from above.
+
+### Create an ArgoCD instance for the app of apps
+This will manage all other apps in the repository. In clusters/mk1, create app-of-apps-yaml. Copy the one from this repository.
+
+Apply it with the following command:
+```bash
+kubectl apply -f clusters/main/app-of-apps.yaml
+```
+
+Now, we can create subfolders in clusters/mk1/base/, and this app-of-apps project will automatically manage them for us.
