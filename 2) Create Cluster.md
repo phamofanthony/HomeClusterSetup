@@ -8,6 +8,22 @@ Required because Kubernetes needs precise memory control, and swap could break s
 sudo swapoff -a
 sudo sed -i '/ swap / s/^/#/' /etc/fstab
 ```
+### Load br_netfilter and ensure it's auto-loaded on boot
+Allows for bridged network traffic to be passed through iptables
+```bash
+sudo modprobe br_netfilter
+echo "br_netfilter" | sudo tee /etc/modules-load.d/br_netfilter.conf
+```
+### Enable packet filtering and persist the settings
+```bash
+sudo sysctl -w net.bridge.bridge-nf-call-iptables=1
+sudo sysctl -w net.bridge.bridge-nf-call-ip6tables=1
+cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+EOF
+sudo sysctl --system
+```
 ### Install containerd
 Our container runtime of choice that manages container lifecucles.
 ```bash
